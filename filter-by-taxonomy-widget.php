@@ -6,6 +6,7 @@
  * Author: Md Laju Miah
  * Author URI: https://www.upwork.com/freelancers/~0149190c8d83bae2e2
  * License: GPLv2 or later
+ * Requires Plugins: WooCommerce
 */
 
 if (!defined('ABSPATH')) exit;
@@ -24,13 +25,10 @@ class Filter_By_Taxonomy_Widget extends WP_Widget {
 
     public function fbt_enqueue_scripts() {
         if (!is_shop() && !is_product_taxonomy()) return;
-    
-        wp_enqueue_script('select2-js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), '4.1.0', true);
-        wp_enqueue_style('select2-css', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', array(), '4.1.0');
-
+  
          // Enqueue your custom script
         wp_enqueue_script(
-            'filter-by-taxonomy',
+            'select2-js',
             plugin_dir_url(__FILE__) . 'assets/js/select2.min.js',
             array('jquery'),
             '1.0',
@@ -39,8 +37,8 @@ class Filter_By_Taxonomy_Widget extends WP_Widget {
 
         // Enqueue your select style
 		wp_enqueue_style(
-			'select2',
-			plugin_dir_url(__FILE__) . 'assets/css/selecte2.min.css',
+			'select2-css',
+			plugin_dir_url(__FILE__) . 'assets/css/select2.min.css',
 			'1.0',
 			'all'
 		);
@@ -56,7 +54,7 @@ class Filter_By_Taxonomy_Widget extends WP_Widget {
 		
 		// Enqueue your custom style
 		wp_enqueue_style(
-			'filter-by-taxonomy-style',
+			'filter-by-taxonomy-css',
 			plugin_dir_url(__FILE__) . 'assets/css/filter-by-taxonomy.css',
 			'1.0',
 			'all'
